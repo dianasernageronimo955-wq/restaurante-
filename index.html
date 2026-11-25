@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabor Huanuqueño - Restaurante en Huánuco</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#fff8f0;color:#333}
+header{background:#2c1e0f;color:white;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;flex-wrap:wrap}
+header h1{font-size:22px}
+nav{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+nav a{color:white;text-decoration:none;font-weight:bold;font-size:14px}
+nav a:hover{color:#f9a826}
+select{padding:6px;border-radius:20px;border:none;font-weight:bold;cursor:pointer}
+.hero{background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.3)),url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200');background-size:cover;background-position:center;color:white;padding:100px 20px;text-align:center}
+.hero h2{font-size:42px;margin-bottom:10px}
+.hero p{font-size:18px;max-width:600px;margin:auto}
+.btn{display:inline-block;margin-top:20px;background:#e67e22;color:white;padding:12px 28px;border-radius:25px;text-decoration:none;font-weight:bold}
+section{padding:50px 20px;max-width:1000px;margin:auto;text-align:center}
+h2{color:#b45309;font-size:30px;margin-bottom:15px}
+p{line-height:1.6}
+.cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;margin-top:20px}
+.card{background:white;padding:25px;border-radius:15px;box-shadow:0 2px 12px rgba(0,0,0,.1)}
+.card h3{color:#e67e22;margin-bottom:8px}
+.galeria{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px}
+.galeria img{width:100%;height:200px;object-fit:cover;border-radius:15px}
+.menu-platos{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px;text-align:left}
+.plato{background:white;padding:20px;border-radius:15px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+.plato b{color:#e67e22}
+form{max-width:500px;margin:20px auto;display:flex;flex-direction:column;gap:12px;text-align:left}
+input,textarea{padding:12px;border-radius:10px;border:1px solid #ddd;width:100%}
+button{background:#e67e22;color:white;border:none;padding:13px;border-radius:25px;font-weight:bold;cursor:pointer;font-size:16px}
+.contacto-box{background:#2c1e0f;color:white;border-radius:20px;padding:30px;margin-top:20px}
+footer{text-align:center;padding:20px;color:#888;background:#fff}
+@media(max-width:700px){.cards,.galeria,.menu-platos{grid-template-columns:1fr}.hero h2{font-size:32px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🍽️ Sabor Huanuqueño</h1>
+  <nav>
+    <a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="#nosotros" data-es="Nosotros" data-en="About Us">Nosotros</a>
+    <a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
+    <a href="#proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a>
+    <a href="#galeria" data-es="Galería" data-en="Gallery">Galería</a>
+    <a href="#contacto" data-es="Contáctanos" data-en="Contact Us">Contáctanos</a>
+    <select id="idioma" onchange="cambiarIdioma()">
+      <option value="es">🇪🇸 Español</option>
+      <option value="en">🇺🇸 English</option>
+    </select>
+  </nav>
+</header>
+
+<div class="hero" id="inicio">
+  <h2 data-es="El verdadero sabor de Huánuco" data-en="The true flavor of Huánuco">El verdadero sabor de Huánuco</h2>
+  <p data-es="Comida casera, platos típicos y mucha tradición. ¡Bienvenidos a nuestra casa!" data-en="Homemade food, typical dishes and a lot of tradition. Welcome to our home!">Comida casera, platos típicos y mucha tradición. ¡Bienvenidos a nuestra casa!</p>
+  <a class="btn" href="#menu" data-es="Ver Menú" data-en="See Menu">Ver Menú</a>
+</div>
+
+<section id="nosotros">
+  <h2 data-es="Nosotros" data-en="About Us">Nosotros</h2>
+  <p data-es="Somos un restaurante familiar de Huánuco con más de 10 años preparando los platos que nos enseñaron nuestras abuelitas. Usamos ingredientes frescos del mercado y cocinamos con mucho amor." data-en="We are a family restaurant in Huánuco with more than 10 years preparing the dishes our grandmothers taught us. We use fresh ingredients from the market and cook with lots of love.">Somos un restaurante familiar de Huánuco con más de 10 años preparando los platos que nos enseñaron nuestras abuelitas. Usamos ingredientes frescos del mercado y cocinamos con mucho amor.</p>
+</section>
+
+<section id="servicios">
+  <h2 data-es="Servicios" data-en="Services">Servicios</h2>
+  <div class="cards">
+    <div class="card"><h3>🍲</h3><h3 data-es="Comida en el local" data-en="Dine In">Comida en el local</h3><p data-es="Ambiente familiar y acogedor" data-en="Cozy family atmosphere">Ambiente familiar y acogedor</p></div>
+    <div class="card"><h3>🛵</h3><h3 data-es="Delivery" data-en="Delivery">Delivery</h3><p data-es="Llevamos tu pedido a tu casa" data-en="We deliver your order to your home">Llevamos tu pedido a tu casa</p></div>
+    <div class="card"><h3>🎉</h3><h3 data-es="Eventos y Cumpleaños" data-en="Events & Birthdays">Eventos y Cumpleaños</h3><p data-es="Celebra con nosotros tu día especial" data-en="Celebrate your special day with us">Celebra con nosotros tu día especial</p></div>
+  </div>
+</section>
+
+<section id="proyectos">
+  <h2 data-es="Proyectos / Nuestro Menú" data-en="Projects / Our Menu">Proyectos / Nuestro Menú</h2>
+  <div class="menu-platos" id="menu">
+    <div class="plato"><b>Ceviche Huanuqueño</b><p data-es="Pescado fresco, limón y cebolla" data-en="Fresh fish, lemon and onion">Pescado fresco, limón y cebolla</p><p><b>S/ 25.00</b></p></div>
+    <div class="plato"><b>Lomo Saltado</b><p data-es="Carne, papas fritas y arroz" data-en="Beef, french fries and rice">Carne, papas fritas y arroz</p><p><b>S/ 28.00</b></p></div>
+    <div class="plato"><b>Pachamanca</b><p data-es="Carne, papa y humitas al estilo tradicional" data-en="Meat, potato and humitas in traditional style">Carne, papa y humitas al estilo tradicional</p><p><b>S/ 35.00</b></p></div>
+    <div class="plato"><b>Pollo a la Brasa</b><p data-es="Con papas y ensalada" data-en="With potatoes and salad">Con papas y ensalada</p><p><b>S/ 32.00</b></p></div>
+  </div>
+</section>
+
+<section id="galeria">
+  <h2 data-es="Galería de Fotos" data-en="Photo Gallery">Galería de Fotos</h2>
+  <div class="galeria">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600" alt="Restaurante">
+    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600" alt="Comida">
+    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600" alt="Plato">
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600" alt="Mesa">
+    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c4299bd?w=600" alt="Ensalada">
+    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600" alt="Pizza">
+  </div>
+</section>
+
+<section id="contacto">
+  <h2 data-es="Contáctanos" data-en="Contact Us">Contáctanos</h2>
+  <div class="contacto-box">
+    <p>📍 <span data-es="Huánuco, Perú" data-en="Huánuco, Peru">Huánuco, Perú</span></p>
+    <p>📞 555-0100</p>
+    <p>🕐 <span data-es="Lunes a Domingo: 11am - 9pm" data-en="Monday to Sunday: 11am - 9pm">Lunes a Domingo: 11am - 9pm</span></p>
+  </div>
+  <form onsubmit="alert('¡Gracias! Te escribiremos pronto');return false;">
+    <input type="text" placeholder="Tu nombre / Your name" required>
+    <input type="text" placeholder="Tu pedido / Your order">
+    <textarea placeholder="Tu mensaje / Your message"></textarea>
+    <button type="submit" data-es="Enviar Mensaje" data-en="Send Message">Enviar Mensaje</button>
+  </form>
+</section>
+
+<footer>© 2026 Sabor Huanuqueño - Huánuco</footer>
+
+<script>
+function cambiarIdioma(){
+  var lang = document.getElementById('idioma').value;
+  document.querySelectorAll('[data-es]').forEach(function(el){
+    el.textContent = el.getAttribute('data-' + lang);
+  });
+  document.documentElement.lang = lang;
+}
+</script>
+</body>
+</html>
