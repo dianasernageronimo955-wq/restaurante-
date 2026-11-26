@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sabor Huanuqueño: cocina tradicional de Huánuco. Pachamanca, chicharrón con mote, locro de gallina y los sabores de nuestra tierra. Delivery y reservas al 923 131 882.">
+    <meta name="theme-color" content="#2b1c12">
+    <title>Sabor Huanuqueño | Cocina tradicional de Huánuco</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍲</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #fff8ef;
+            --paper: #fffdf9;
+            --ink: #2b1c12;
+            --ink-soft: #3b291b;
+            --muted: #7c6b5b;
+            --terra: #c75b2c;
+            --terra-dark: #a8461d;
+            --saffron: #e8a33d;
+            --herb: #627043;
+            --line: rgba(75, 48, 28, .14);
+            --shadow: 0 20px 55px rgba(74, 44, 22, .13);
+            --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+            --sans: 'DM Sans', 'Segoe UI', Arial, sans-serif;
+            --header-h: 78px;
+            --radius: 18px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 14px); }
+        body {
+            margin: 0;
+            background: var(--cream);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.72;
+            -webkit-font-smoothing: antialiased;
+        }
+        body.no-scroll { overflow: hidden; }
+        img { display: block; max-width: 100%; }
+        a { color: inherit; text-decoration: none; }
+        button, input, textarea, select { font: inherit; }
+        h1, h2, h3, h4 { font-family: var(--serif); font-weight: 500; line-height: 1.12; margin: 0; }
+        p { margin: 0; }
+        :focus-visible { outline: 2px solid var(--saffron); outline-offset: 4px; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+        .skip-link { position: absolute; left: -9999px; top: 0; z-index: 999; background: var(--saffron); color: var(--ink); padding: 10px 16px; }
+        .skip-link:focus { left: 12px; top: 12px; }
+
+        .container { width: min(1200px, 90%); margin-inline: auto; }
+        .container-narrow { width: min(820px, 90%); margin-inline: auto; }
+        .section { padding: clamp(76px, 9vw, 128px) 0; }
+        .section-tint { background: var(--paper); }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 12px;
+            font-size: .7rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
+            color: var(--terra); margin-bottom: 18px;
+        }
+        .eyebrow::before { content: ''; width: 30px; height: 1px; background: currentColor; }
+        .section-head { max-width: 720px; margin: 0 auto 54px; text-align: center; }
+        .section-head.center { text-align: center; }
+        .section-head h2 { font-size: clamp(2.1rem, 4.5vw, 3.4rem); }
+        .section-head h2 em { color: var(--terra); font-style: italic; }
+        .section-head p { margin-top: 20px; color: var(--muted); font-size: 1.02rem; }
+        .ornament { width: 46px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--terra), var(--saffron)); margin: 24px auto 0; }
+        .text-ink { color: var(--ink); font-weight: 600; }
+
+        /* ---------- Botones ---------- */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            min-height: 52px; padding: 0 26px; border-radius: 100px; border: 1px solid transparent;
+            font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+            cursor: pointer; transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+            white-space: nowrap;
+        }
+        .btn:hover { transform: translateY(-3px); }
+        .btn:active { transform: translateY(0); }
+        .btn-primary { background: var(--terra); color: #fff; box-shadow: 0 12px 26px rgba(199, 91, 44, .28); }
+        .btn-primary:hover { background: var(--terra-dark); box-shadow: 0 16px 34px rgba(199, 91, 44, .38); }
+        .btn-ghost { background: rgba(255,255,255,.08); color: #fff; border-color: rgba(255,255,255,.55); }
+        .btn-ghost:hover { background: #fff; color: var(--ink); }
+        .btn-outline { background: transparent; color: var(--ink); border-color: rgba(75,48,28,.28); }
+        .btn-outline:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+        /* ---------- Header ---------- */
+        .site-header {
+            position: fixed; inset: 0 0 auto; z-index: 100; height: var(--header-h);
+            display: flex; align-items: center;
+            background: rgba(43, 28, 18, .34);
+            border-bottom: 1px solid rgba(255,255,255,.16);
+            transition: background .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+        .site-header.is-scrolled {
+            background: rgba(43, 28, 18, .97);
+            border-color: rgba(232, 163, 61, .25);
+            box-shadow: 0 10px 30px rgba(0,0,0,.22);
+            backdrop-filter: blur(14px);
+        }
+        .header-inner { width: min(1320px, 92%); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; color: #fff; }
+        .brand-mark {
+            width: 42px; height: 42px; display: grid; place-items: center;
+            border: 1px solid var(--saffron); border-radius: 12px; color: var(--saffron);
+            font-family: var(--serif); font-size: 1.1rem; font-weight: 600;
+        }
+        .brand-name { font-family: var(--serif); font-size: 1.32rem; line-height: 1.1; white-space: nowrap; }
+        .brand-sub { display: block; font-family: var(--sans); font-size: .56rem; letter-spacing: .24em; text-transform: uppercase; color: var(--saffron); }
+        .primary-nav ul { display: flex; align-items: center; gap: clamp(10px, 1.5vw, 24px); list-style: none; margin: 0; padding: 0; }
+        .primary-nav a:not(.btn) {
+            position: relative; display: block; padding: 8px 0;
+            color: rgba(255,255,255,.86); font-size: .7rem; font-weight: 600;
+            letter-spacing: .1em; text-transform: uppercase; transition: color .2s;
+        }
+        .primary-nav a:not(.btn)::after {
+            content: ''; position: absolute; left: 0; bottom: 2px; width: 0; height: 1px;
+            background: var(--saffron); transition: width .25s ease;
+        }
+        .primary-nav a:not(.btn):hover { color: var(--saffron); }
+        .primary-nav a:not(.btn):hover::after { width: 100%; }
+        .header-tools { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+        .lang-box { position: relative; }
+        .lang-box::after {
+            content: '▾'; position: absolute; right: 11px; top: 50%; transform: translateY(-50%);
+            color: var(--saffron); font-size: .65rem; pointer-events: none;
+        }
+        .lang-box select {
+            appearance: none; height: 39px; padding: 0 28px 0 13px; border-radius: 100px;
+            background: rgba(255,255,255,.08); border: 1px solid rgba(232,163,61,.55);
+            color: #fff; font-size: .7rem; font-weight: 600; cursor: pointer;
+        }
+        .lang-box select option { background: var(--ink); color: #fff; }
+        .header-phone {
+            display: inline-flex; align-items: center; gap: 8px; height: 39px; padding: 0 17px;
+            border-radius: 100px; background: var(--terra); color: #fff;
+            font-size: .7rem; font-weight: 700; letter-spacing: .06em; transition: background .25s, transform .25s;
+        }
+        .header-phone:hover { background: var(--terra-dark); transform: translateY(-2px); }
+        .nav-toggle { display: none; width: 42px; height: 42px; padding: 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,.4); background: transparent; cursor: pointer; }
+        .nav-toggle span { display: block; height: 1.5px; background: #fff; margin: 5px 0; transition: transform .25s, opacity .25s; }
+        .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+        .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            position: relative; isolation: isolate; min-height: 100svh; display: flex; align-items: center;
+            background: url('img/pachamanca.jpg') center/cover no-repeat;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0; z-index: -1;
+            background:
+                radial-gradient(circle at 84% 20%, rgba(232,163,61,.20), transparent 38%),
+                linear-gradient(90deg, rgba(30,18,10,.96) 0%, rgba(30,18,10,.84) 42%, rgba(30,18,10,.44) 100%),
+                linear-gradient(0deg, rgba(30,18,10,.92) 0%, transparent 42%);
+        }
+        .hero::after {
+            content: ''; position: absolute; inset: 0; z-index: -1; opacity: .28;
+            background-image: radial-gradient(rgba(255,255,255,.35) .6px, transparent .6px);
+            background-size: 7px 7px;
+            mask-image: linear-gradient(90deg, #000, transparent 60%);
+        }
+        .hero-inner { position: relative; width: min(1320px, 92%); margin-inline: auto; padding: calc(var(--header-h) + 70px) 0 120px; }
+        .hero-content { max-width: 600px; color: #fff; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px; margin-bottom: 24px;
+            border: 1px solid rgba(232,163,61,.55); border-radius: 100px;
+            background: rgba(43,28,18,.5); color: var(--saffron);
+            font-size: .66rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+        }
+        .hero h1 { font-size: clamp(3rem, 7.2vw, 6rem); letter-spacing: -.025em; color: #fff; }
+        .hero h1 span { display: block; }
+        .hero h1 em { display: block; font-style: italic; color: var(--saffron); }
+        .hero-text { max-width: 100%; margin-top: 26px; color: rgba(255,248,239,.87); font-size: clamp(1rem, 1.35vw, 1.12rem); }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 38px; }
+        .hero-meta { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 42px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.2); }
+        .hero-meta span { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,248,239,.82); font-size: .78rem; font-weight: 500; }
+        .hero-meta b { color: var(--saffron); font-size: 1rem; }
+        .hero-collage { position: absolute; right: 1%; top: 50%; transform: translateY(-48%); width: 39%; max-width: 500px; height: 540px; }
+        .hero-collage figure { position: absolute; margin: 0; overflow: hidden; border: 6px solid rgba(255,248,239,.9); box-shadow: 0 24px 60px rgba(0,0,0,.45); background: var(--ink); }
+        .hero-collage img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-collage .c1 { width: 62%; height: 66%; top: 0; right: 0; border-radius: 20px 120px 20px 20px; transform: rotate(3deg); }
+        .hero-collage .c2 { width: 56%; height: 48%; bottom: 0; left: 0; border-radius: 120px 20px 20px 20px; transform: rotate(-4deg); }
+        .hero-collage .c3 { width: 34%; height: 34%; right: -2%; bottom: 6%; border-radius: 50%; transform: rotate(8deg); border-width: 4px; }
+        .scroll-cue {
+            position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%);
+            width: 25px; height: 42px; border: 1px solid rgba(255,255,255,.5); border-radius: 20px;
+            display: flex; justify-content: center; padding-top: 8px;
+        }
+        .scroll-cue span { width: 2px; height: 8px; background: var(--saffron); border-radius: 2px; animation: scroll 1.8s ease-in-out infinite; }
+        @keyframes scroll { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(14px); opacity: 0; } 100% { opacity: 0; } }
+
+        /* ---------- Cifras ---------- */
+        .stats { background: var(--ink); color: #fff; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+        .stat { padding: 34px 18px; text-align: center; border-right: 1px solid rgba(255,255,255,.1); }
+        .stat:last-child { border-right: 0; }
+        .stat strong { display: block; font-family: var(--serif); font-size: clamp(1.9rem, 3.5vw, 2.7rem); line-height: 1; color: var(--saffron); }
+        .stat span { display: block; margin-top: 10px; font-size: .64rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,248,239,.75); }
+
+        /* ---------- Nosotros ---------- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 96px); align-items: center; }
+        .about-content h2 { font-size: clamp(2.1rem, 4.2vw, 3.3rem); }
+        .about-content h2 em { color: var(--terra); font-style: italic; }
+        .about-content p { margin-top: 20px; color: var(--muted); }
+        .about-list { list-style: none; padding: 0; margin: 30px 0 36px; display: grid; gap: 14px; }
+        .about-list li { position: relative; padding-left: 32px; color: var(--ink-soft); font-size: .94rem; font-weight: 500; }
+        .about-list li::before {
+            content: '✦'; position: absolute; left: 0; top: 0; color: var(--terra); font-size: 1rem;
+        }
+        .about-photos { position: relative; min-height: 520px; }
+        .about-photos .main { width: 82%; height: 430px; object-fit: cover; border-radius: 130px 130px 22px 22px; box-shadow: var(--shadow); }
+        .about-photos .secondary {
+            position: absolute; right: 0; bottom: 0; width: 52%; height: 250px; object-fit: cover;
+            border: 8px solid var(--cream); border-radius: 22px; box-shadow: var(--shadow);
+        }
+        .about-seal {
+            position: absolute; left: 2%; bottom: 18px; width: 132px; height: 132px; border-radius: 50%;
+            background: var(--terra); color: #fff; display: grid; place-content: center; text-align: center;
+            border: 6px solid var(--cream); box-shadow: var(--shadow); transform: rotate(-12deg);
+        }
+        .about-seal strong { display: block; font-family: var(--serif); font-size: 1.9rem; line-height: 1; }
+        .about-seal span { font-size: .58rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+
+        /* ---------- Cocina ---------- */
+        .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+        .feature {
+            position: relative; padding: 38px 34px 34px; border-radius: var(--radius);
+            background: var(--paper); border: 1px solid var(--line);
+            transition: transform .3s, box-shadow .3s, border-color .3s;
+        }
+        .feature:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: rgba(199,91,44,.35); }
+        .feature-num { font-family: var(--serif); font-size: 2.4rem; line-height: 1; color: rgba(199,91,44,.28); }
+        .feature h3 { font-size: 1.45rem; margin-top: 12px; }
+        .feature p { margin-top: 12px; color: var(--muted); font-size: .93rem; }
+        .ingredients { margin-top: 44px; text-align: center; }
+        .ingredients > span { display: block; margin-bottom: 18px; font-size: .66rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+        .ingredient-list { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+        .ingredient-list span {
+            padding: 9px 18px; border-radius: 100px; background: rgba(98,112,67,.1);
+            border: 1px solid rgba(98,112,67,.25); color: var(--herb);
+            font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+        }
+
+        /* ---------- Pachamanca / técnica ---------- */
+        .tradition {
+            position: relative; isolation: isolate; overflow: hidden;
+            background: url('img/pachamanca.jpg') center/cover fixed;
+        }
+        .tradition::before { content: ''; position: absolute; inset: 0; z-index: -1; background: rgba(32,19,10,.86); }
+        .tradition .section-head h2 { color: #fff; }
+        .tradition .section-head h2 em { color: var(--saffron); }
+        .tradition .section-head p { color: rgba(255,248,239,.78); }
+        .tradition .eyebrow { color: var(--saffron); }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .step {
+            padding: 32px 28px; border-radius: var(--radius); color: #fff;
+            background: rgba(255,248,239,.07); border: 1px solid rgba(255,248,239,.2);
+            backdrop-filter: blur(6px); transition: transform .3s, background .3s;
+        }
+        .step:hover { transform: translateY(-6px); background: rgba(255,248,239,.12); }
+        .step-num { font-family: var(--serif); font-size: 2rem; color: var(--saffron); line-height: 1; }
+        .step h3 { margin-top: 14px; font-size: 1.3rem; }
+        .step p { margin-top: 12px; color: rgba(255,248,239,.76); font-size: .9rem; }
+
+        /* ---------- Menú ---------- */
+        .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+        .dish-card {
+            overflow: hidden; border-radius: var(--radius); background: var(--paper);
+            border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(74,44,22,.06);
+            transition: transform .35s, box-shadow .35s, border-color .35s;
+        }
+        .dish-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: rgba(199,91,44,.35); }
+        .dish-media { position: relative; height: 240px; overflow: hidden; background: linear-gradient(135deg, #e8b25f, var(--terra)); }
+        .dish-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; transition: transform .6s ease; }
+        .dish-card:hover .dish-media img { transform: scale(1.07); }
+        .dish-tag {
+            position: absolute; z-index: 2; top: 16px; left: 16px; padding: 6px 12px; border-radius: 100px;
+            background: rgba(43,28,18,.78); color: var(--saffron);
+            font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+        }
+        .dish-body { padding: 24px 26px 26px; }
+        .dish-body h3 { font-size: 1.45rem; }
+        .dish-body p { margin-top: 10px; color: var(--muted); font-size: .9rem; min-height: 78px; }
+        .dish-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+        .price span { display: block; font-size: .58rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+        .price strong { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--terra); }
+        .dish-foot a { color: var(--terra); font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+        .dish-foot a:hover { text-decoration: underline; }
+        .extras {
+            display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+            margin-top: 42px; padding: 26px 30px; border-radius: var(--radius);
+            background: rgba(199,91,44,.08); border: 1px dashed rgba(199,91,44,.35);
+        }
+        .extras b { font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--terra); }
+        .extras span { padding: 7px 14px; border-radius: 100px; background: var(--paper); font-size: .8rem; font-weight: 600; }
+
+        /* ---------- Galería ---------- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 230px; gap: 14px; }
+        .gallery-item { position: relative; overflow: hidden; border: 0; padding: 0; border-radius: var(--radius); cursor: zoom-in; background: var(--ink); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item figcaption {
+            position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 18px 16px;
+            background: linear-gradient(0deg, rgba(32,19,10,.85), transparent);
+            color: #fff; font-size: .8rem; font-weight: 600; text-align: left;
+        }
+        .gallery-item:nth-child(1) { grid-row: span 2; }
+        .gallery-item:nth-child(5) { grid-column: span 2; }
+
+        /* ---------- CTA ---------- */
+        .cta-band {
+            position: relative; overflow: hidden; border-radius: 26px; padding: clamp(40px, 6vw, 72px);
+            background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 30px;
+        }
+        .cta-band::after {
+            content: ''; position: absolute; right: -60px; top: -90px; width: 320px; height: 320px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(232,163,61,.28), transparent 70%);
+        }
+        .cta-band h2 { position: relative; font-size: clamp(1.8rem, 3.5vw, 2.7rem); max-width: 620px; }
+        .cta-band h2 em { color: var(--saffron); font-style: italic; }
+        .cta-band p { position: relative; margin-top: 14px; color: rgba(255,248,239,.72); max-width: 560px; }
+        .cta-band .btn { position: relative; flex-shrink: 0; }
+
+        /* ---------- Contacto ---------- */
+        .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(36px, 6vw, 76px); align-items: start; }
+        .contact-card {
+            padding: 34px; border-radius: var(--radius); background: var(--ink); color: #fff; box-shadow: var(--shadow);
+        }
+        .contact-card h3 { font-size: 1.6rem; }
+        .contact-card h3 em { color: var(--saffron); font-style: italic; }
+        .contact-card p { margin-top: 14px; color: rgba(255,248,239,.72); font-size: .92rem; }
+        .contact-rows { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 18px; }
+        .contact-rows li { display: flex; gap: 14px; align-items: flex-start; }
+        .contact-rows i { display: grid; place-items: center; width: 38px; height: 38px; flex-shrink: 0; border-radius: 10px; background: rgba(232,163,61,.15); color: var(--saffron); font-style: normal; }
+        .contact-rows span { display: block; font-size: .64rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--saffron); }
+        .contact-rows p, .contact-rows a { display: block; margin-top: 2px; color: #fff; font-size: .95rem; font-weight: 500; }
+        .contact-rows a:hover { color: var(--saffron); }
+        .contact-form {
+            padding: 36px; border-radius: var(--radius); background: var(--paper); border: 1px solid var(--line);
+        }
+        .contact-form h3 { font-size: 1.6rem; }
+        .contact-form > p { margin-top: 8px; color: var(--muted); font-size: .9rem; }
+        .form-grid { display: grid; gap: 16px; margin-top: 24px; }
+        .form-grid input, .form-grid textarea {
+            width: 100%; padding: 14px 16px; border-radius: 12px; background: var(--cream);
+            border: 1px solid var(--line); color: var(--ink); font-size: .92rem; transition: border-color .2s, box-shadow .2s;
+        }
+        .form-grid input:focus, .form-grid textarea:focus { outline: 0; border-color: var(--terra); box-shadow: 0 0 0 3px rgba(199,91,44,.12); }
+        .form-grid textarea { min-height: 120px; resize: vertical; }
+        .form-grid .btn { justify-self: start; margin-top: 4px; }
+        .form-note { margin-top: 16px; font-size: .82rem; font-weight: 600; color: var(--herb); min-height: 20px; }
+
+        /* ---------- Footer ---------- */
+        .site-footer { background: #1c110a; color: rgba(255,248,239,.7); padding: 64px 0 24px; }
+        .footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .footer-brand { display: flex; align-items: center; gap: 12px; color: #fff; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 14px 24px; }
+        .footer-links a { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+        .footer-links a:hover { color: var(--saffron); }
+        .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding-top: 22px; font-size: .76rem; }
+
+        /* ---------- WhatsApp ---------- */
+        .whatsapp {
+            position: fixed; right: 22px; bottom: 22px; z-index: 90;
+            width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%;
+            background: #25d366; color: #fff; box-shadow: 0 10px 25px rgba(0,0,0,.25);
+            transition: transform .25s, box-shadow .25s;
+        }
+        .whatsapp:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 14px 30px rgba(0,0,0,.3); }
+        .whatsapp svg { width: 28px; height: 28px; fill: currentColor; }
+
+        /* ---------- Visor de fotos ---------- */
+        #visor { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 40px 20px; background: rgba(20,12,7,.94); }
+        #visor.activo { display: flex; }
+        #visor figure { margin: 0; max-width: min(1000px, 92vw); text-align: center; }
+        #visor img { max-width: 100%; max-height: 78vh; border-radius: 14px; box-shadow: 0 24px 70px rgba(0,0,0,.5); }
+        #visor figcaption { margin-top: 14px; color: var(--saffron); font-family: var(--serif); font-size: 1.1rem; }
+        #visor .cerrar { position: absolute; top: 18px; right: 26px; background: none; border: 0; color: #fff; font-size: 38px; line-height: 1; cursor: pointer; }
+        #visor .nav-vis { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,.4); background: rgba(255,255,255,.08); color: #fff; font-size: 22px; cursor: pointer; }
+        #visor .nav-vis:hover { background: rgba(255,255,255,.2); }
+        #visor .prev { left: 20px; }
+        #visor .next { right: 20px; }
+
+        /* ---------- Animaciones ---------- */
+        .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+        .reveal.visible { opacity: 1; transform: none; }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 1100px) {
+            .hero-collage { width: 34%; height: 460px; opacity: .9; }
+            .hero-content { max-width: 55%; }
+            .primary-nav ul { gap: 12px; }
+            .primary-nav a:not(.btn) { font-size: .64rem; }
+        }
+        @media (max-width: 900px) {
+            .nav-toggle { display: block; order: 3; }
+            .header-tools { margin-left: auto; }
+            .header-phone { display: none; }
+            .primary-nav {
+                position: absolute; top: var(--header-h); left: 0; right: 0;
+                background: rgba(43,28,18,.98); border-bottom: 1px solid rgba(232,163,61,.3);
+                max-height: 0; overflow: hidden; transition: max-height .35s ease;
+            }
+            .primary-nav.open { max-height: 460px; }
+            .primary-nav ul { display: grid; gap: 0; padding: 12px 5% 22px; }
+            .primary-nav a:not(.btn) { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.08); font-size: .76rem; }
+            .hero-collage { display: none; }
+            .hero-content { max-width: 760px; }
+            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps { grid-template-columns: 1fr; }
+            .tradition { background-attachment: scroll; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; }
+            .about-photos { min-height: 460px; max-width: 560px; margin-inline: auto; width: 100%; }
+        }
+        @media (max-width: 700px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .stat:nth-child(2) { border-right: 0; }
+            .stat:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.1); }
+            .feature-grid, .menu-grid, .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-auto-rows: 220px; }
+            .gallery-item:nth-child(1) { grid-row: auto; }
+            .gallery-item:nth-child(5) { grid-column: auto; }
+            .cta-band { flex-direction: column; align-items: flex-start; }
+            .about-photos { min-height: 400px; }
+            .about-photos .main { height: 330px; }
+            .about-photos .secondary { height: 190px; }
+            .about-seal { width: 104px; height: 104px; }
+            .contact-card, .contact-form { padding: 26px; }
+            .whatsapp { right: 14px; bottom: 14px; width: 48px; height: 48px; }
+            #visor .nav-vis { width: 38px; height: 38px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+            .reveal { opacity: 1; transform: none; }
+        }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#contenido" data-es="Ir al contenido" data-en="Skip to content">Ir al contenido</a>
+
+<header class="site-header" id="siteHeader">
+    <div class="header-inner">
+        <a class="brand" href="#inicio" aria-label="Sabor Huanuqueño">
+            <span class="brand-mark">SH</span>
+            <span class="brand-name">Sabor Huanuqueño<span class="brand-sub" data-es="Cocina de Huánuco" data-en="Huánuco cuisine">Cocina de Huánuco</span></span>
+        </a>
+        <nav class="primary-nav" id="primaryNav" aria-label="Navegación principal">
+            <ul>
+                <li><a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a></li>
+                <li><a href="#nosotros" data-es="Nosotros" data-en="About us">Nosotros</a></li>
+                <li><a href="#cocina" data-es="Nuestra cocina" data-en="Our kitchen">Nuestra cocina</a></li>
+                <li><a href="#proyectos" data-es="Menú" data-en="Menu">Menú</a></li>
+                <li><a href="#galeria" data-es="Galería" data-en="Gallery">Galería</a></li>
+                <li><a href="#contacto" data-es="Contáctanos" data-en="Contact us">Contáctanos</a></li>
+            </ul>
+        </nav>
+        <div class="header-tools">
+            <div class="lang-box">
+                <label class="sr-only" for="idioma" data-es="Cambiar idioma" data-en="Change language">Cambiar idioma</label>
+                <select id="idioma" aria-label="Idioma / Language">
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="en">🇺🇸 English</option>
+                </select>
+            </div>
+            <a class="header-phone" href="tel:+51923131882">📞 923 131 882</a>
+            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main id="contenido">
+    <!-- ================= INICIO ================= -->
+    <section class="hero" id="inicio">
+        <div class="hero-inner">
+            <div class="hero-content">
+                <span class="hero-badge" data-es="⭐ Restaurante familiar · Huánuco, Perú" data-en="⭐ Family restaurant · Huánuco, Peru">⭐ Restaurante familiar · Huánuco, Perú</span>
+                <h1>
+                    <span data-es="El sabor de Huánuco," data-en="The flavor of Huánuco,">El sabor de Huánuco,</span>
+                    <em data-es="en cada bocado." data-en="in every bite.">en cada bocado.</em>
+                </h1>
+                <p class="hero-text" data-es="Pachamanca cocida bajo piedras calientes, chicharrón dorado con mote fresco, locro de gallina de corral y ajíes que despiertan la memoria. Cocina huanuqueña de verdad: ingredientes del mercado, recetas de abuela y el calor de una casa que siempre te recibe bien." data-en="Pachamanca cooked under hot stones, golden chicharrón with fresh mote corn, free-range hen stew and chilies that awaken memories. Real Huánuco cooking: market ingredients, grandmother's recipes and the warmth of a home that always welcomes you.">Pachamanca cocida bajo piedras calientes, chicharrón dorado con mote fresco, locro de gallina de corral y ajíes que despiertan la memoria. Cocina huanuqueña de verdad: ingredientes del mercado, recetas de abuela y el calor de una casa que siempre te recibe bien.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#proyectos" data-es="Descubrir el menú" data-en="Explore the menu">Descubrir el menú</a>
+                    <a class="btn btn-ghost" href="tel:+51923131882" data-es="Llámanos ahora" data-en="Call us now">Llámanos ahora</a>
+                </div>
+                <div class="hero-meta">
+                    <span><b>🕐</b> <span data-es="Abierto hoy · 11:00 a 21:00" data-en="Open today · 11:00 AM to 9:00 PM">Abierto hoy · 11:00 a 21:00</span></span>
+                    <span><b>🛵</b> <span data-es="Delivery en Huánuco" data-en="Delivery in Huánuco">Delivery en Huánuco</span></span>
+                    <span><b>📞</b> <span>923 131 882</span></span>
+                </div>
+            </div>
+            <div class="hero-collage" aria-hidden="true">
+                <figure class="c1"><img src="img/chicharron-con-mote.jpg" alt=""></figure>
+                <figure class="c2"><img src="img/locro-de-gallina.jpg" alt=""></figure>
+                <figure class="c3"><img src="img/cuy-chactado.jpg" alt=""></figure>
+            </div>
+        </div>
+        <a class="scroll-cue" href="#nosotros" aria-label="Desplazarse"><span></span></a>
+    </section>
+
+    <section class="stats" aria-label="Nuestro restaurante en cifras">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat"><strong>10+</strong><span data-es="Años de historia" data-en="Years of history">Años de historia</span></div>
+                <div class="stat"><strong>5</strong><span data-es="Platos insignia" data-en="Signature dishes">Platos insignia</span></div>
+                <div class="stat"><strong>100%</strong><span data-es="Cocina casera" data-en="Homemade cooking">Cocina casera</span></div>
+                <div class="stat"><strong>1</strong><span data-es="Ciudad: Huánuco" data-en="City: Huánuco">Ciudad: Huánuco</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= NOSOTROS ================= -->
+    <section class="section" id="nosotros">
+        <div class="container about-grid">
+            <div class="about-content reveal">
+                <span class="eyebrow" data-es="Nuestra historia" data-en="Our story">Nuestra historia</span>
+                <h2><span data-es="Somos casa," data-en="We are home,">Somos casa,</span> <em data-es="somos cocina." data-en="we are kitchen.">somos cocina.</em></h2>
+                <p data-es="Empezamos hace más de diez años en una pequeña cocina de Huánuco, con la misma receta que nuestras abuelas preparaban los domingos: paciencia, fuego lento y cariño. Hoy seguimos eligiendo lo mejor del mercado cada mañana para que cada plato sepa a casa." data-en="We started more than ten years ago in a small Huánuco kitchen, using the same recipe our grandmothers made on Sundays: patience, slow fire and love. Today we still pick the best from the market every morning so every dish tastes like home.">Empezamos hace más de diez años en una pequeña cocina de Huánuco, con la misma receta que nuestras abuelas preparaban los domingos: paciencia, fuego lento y cariño. Hoy seguimos eligiendo lo mejor del mercado cada mañana para que cada plato sepa a casa.</p>
+                <p data-es="Aquí no hay atajos: la pachamanca se entierra y se espera, el chicharrón se fríe hasta quedar crocante y el locro se cocina a fuego suave hasta que la gallina se deshace. Ese es nuestro modo de honrar la cocina huanuqueña." data-en="There are no shortcuts here: pachamanca is buried and waited for, chicharrón is fried until crispy and locro is cooked over low heat until the hen falls apart. That is how we honor Huánuco cooking.">Aquí no hay atajos: la pachamanca se entierra y se espera, el chicharrón se fríe hasta quedar crocante y el locro se cocina a fuego suave hasta que la gallina se deshace. Ese es nuestro modo de honrar la cocina huanuqueña.</p>
+                <ul class="about-list">
+                    <li data-es="Ingredientes frescos comprados en el mercado local." data-en="Fresh ingredients bought at the local market.">Ingredientes frescos comprados en el mercado local.</li>
+                    <li data-es="Recetas transmitidas de generación en generación." data-en="Recipes passed down from generation to generation.">Recetas transmitidas de generación en generación.</li>
+                    <li data-es="Atención de familia y trato de casa." data-en="Family service and a home-like welcome.">Atención de familia y trato de casa.</li>
+                </ul>
+                <a class="btn btn-outline" href="#proyectos" data-es="Conoce nuestro menú" data-en="See our menu">Conoce nuestro menú</a>
+            </div>
+            <div class="about-photos reveal">
+                <img class="main" src="img/chicharron.jpg" alt="Chicharrón huanuqueño con papas y ensalada" loading="lazy">
+                <img class="secondary" src="img/locro-de-gallina.jpg" alt="Locro de gallina casero" loading="lazy">
+                <div class="about-seal"><strong>10+</strong><span data-es="Años cocinando" data-en="Years cooking">Años cocinando</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= NUESTRA COCINA ================= -->
+    <section class="section section-tint" id="cocina">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="eyebrow" data-es="Sabores de la tierra" data-en="Flavors of the land">Sabores de la tierra</span>
+                <h2><span data-es="Lo que hace única a la" data-en="What makes">Lo que hace única a la</span> <em data-es="cocina huanuqueña" data-en="Huánuco cooking">cocina huanuqueña</em></h2>
+                <p data-es="Huánuco tiene una cocina de altura y de memoria. Se cocina con lo que da la tierra —papas nativas, habas, mote, ají panca, huacatay— y con técnicas que vienen de siglos atrás, como la pachamanca bajo piedras calientes. Cada plato cuenta quiénes somos." data-en="Huánuco has a cuisine of highlands and memory. It is cooked with what the land gives us — native potatoes, broad beans, mote corn, panca chili, huacatay herb— and with techniques centuries old, such as pachamanca under hot stones. Every dish tells who we are.">Huánuco tiene una cocina de altura y de memoria. Se cocina con lo que da la tierra —papas nativas, habas, mote, ají panca, huacatay— y con técnicas que vienen de siglos atrás, como la pachamanca bajo piedras calientes. Cada plato cuenta quiénes somos.</p>
+                <div class="ornament"></div>
+            </div>
+            <div class="feature-grid">
+                <article class="feature reveal">
+                    <span class="feature-num">01</span>
+                    <h3 data-es="De la tierra al plato" data-en="From the land to the plate">De la tierra al plato</h3>
+                    <p data-es="Escogemos papa, habas, mote y hierbas frescas en el mercado de Huánuco. La frescura no se improvisa: se compra temprano y se cocina el mismo día." data-en="We choose potatoes, broad beans, mote corn and fresh herbs at the Huánuco market. Freshness cannot be faked: it is bought early and cooked the same day.">Escogemos papa, habas, mote y hierbas frescas en el mercado de Huánuco. La frescura no se improvisa: se compra temprano y se cocina el mismo día.</p>
+                </article>
+                <article class="feature reveal">
+                    <span class="feature-num">02</span>
+                    <h3 data-es="Fuego, piedra y paciencia" data-en="Fire, stone and patience">Fuego, piedra y paciencia</h3>
+                    <p data-es="La pachamanca se prepara en un hoyo con piedras calientes. La carne, las papas y las humitas se cocinan lentamente hasta absorber el humo y el aroma de las hierbas." data-en="Pachamanca is prepared in a pit with hot stones. Meat, potatoes and humitas cook slowly until they absorb the smoke and the aroma of the herbs.">La pachamanca se prepara en un hoyo con piedras calientes. La carne, las papas y las humitas se cocinan lentamente hasta absorber el humo y el aroma de las hierbas.</p>
+                </article>
+                <article class="feature reveal">
+                    <span class="feature-num">03</span>
+                    <h3 data-es="Recetas con historia" data-en="Recipes with history">Recetas con historia</h3>
+                    <p data-es="El locro de gallina, el picante de cuy y el chicharrón con mote son platos que se sirven en las casas huanuqueñas desde hace generaciones. Nosotros los mantenemos vivos." data-en="Locro de gallina, picante de cuy and chicharrón with mote have been served in Huánuco homes for generations. We keep them alive.">El locro de gallina, el picante de cuy y el chicharrón con mote son platos que se sirven en las casas huanuqueñas desde hace generaciones. Nosotros los mantenemos vivos.</p>
+                </article>
+                <article class="feature reveal">
+                    <span class="feature-num">04</span>
+                    <h3 data-es="Para compartir" data-en="Made to share">Para compartir</h3>
+                    <p data-es="En Huánuco comer es reunirse. Nuestros platos están pensados para la mesa grande, para el almuerzo del domingo y para celebrar con quienes quieres." data-en="In Huánuco, eating means gathering. Our dishes are made for a big table, for Sunday lunch and for celebrating with the people you love.">En Huánuco comer es reunirse. Nuestros platos están pensados para la mesa grande, para el almuerzo del domingo y para celebrar con quienes quieres.</p>
+                </article>
+            </div>
+            <div class="ingredients reveal">
+                <span data-es="El sabor de Huánuco está en sus ingredientes" data-en="The flavor of Huánuco is in its ingredients">El sabor de Huánuco está en sus ingredientes</span>
+                <div class="ingredient-list">
+                    <span data-es="Huacatay" data-en="Huacatay herb">Huacatay</span>
+                    <span data-es="Ají panca" data-en="Panca chili">Ají panca</span>
+                    <span data-es="Papa nativa" data-en="Native potato">Papa nativa</span>
+                    <span data-es="Habas" data-en="Broad beans">Habas</span>
+                    <span data-es="Mote" data-en="Mote corn">Mote</span>
+                    <span data-es="Chuño" data-en="Chuño">Chuño</span>
+                    <span data-es="Cacao" data-en="Cacao">Cacao</span>
+                    <span data-es="Plátano" data-en="Plantain">Plátano</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PACHAMANCA ================= -->
+    <section class="section tradition">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="eyebrow" data-es="Nuestra técnica estrella" data-en="Our signature technique">Nuestra técnica estrella</span>
+                <h2><span data-es="Así nace una" data-en="This is how a">Así nace una</span> <em data-es="pachamanca" data-en="pachamanca">pachamanca</em></h2>
+                <p data-es="No es solo un plato: es un ritual. Cada paso lleva tiempo, fuego y cariño." data-en="It is not just a dish: it is a ritual. Every step takes time, fire and love.">No es solo un plato: es un ritual. Cada paso lleva tiempo, fuego y cariño.</p>
+                <div class="ornament"></div>
+            </div>
+            <div class="steps">
+                <article class="step reveal">
+                    <span class="step-num">01</span>
+                    <h3 data-es="Elegimos los ingredientes" data-en="We choose the ingredients">Elegimos los ingredientes</h3>
+                    <p data-es="Carne, papa, habas, humitas y hierbas frescas, todo preparado el mismo día con lo mejor del mercado huanuqueño." data-en="Meat, potatoes, broad beans, humitas and fresh herbs, all prepared the same day with the best of the Huánuco market.">Carne, papa, habas, humitas y hierbas frescas, todo preparado el mismo día con lo mejor del mercado huanuqueño.</p>
+                </article>
+                <article class="step reveal">
+                    <span class="step-num">02</span>
+                    <h3 data-es="Cocinamos bajo piedras" data-en="We cook under stones">Cocinamos bajo piedras</h3>
+                    <p data-es="Un hoyo caliente, piedras encendidas y paciencia mientras la tierra hace su trabajo y el humo da su sabor." data-en="A hot pit, glowing stones and patience while the earth does its work and the smoke gives its flavor.">Un hoyo caliente, piedras encendidas y paciencia mientras la tierra hace su trabajo y el humo da su sabor.</p>
+                </article>
+                <article class="step reveal">
+                    <span class="step-num">03</span>
+                    <h3 data-es="Compartimos el momento" data-en="We share the moment">Compartimos el momento</h3>
+                    <p data-es="Se destapa, se sirve y se disfruta en compañía. Ese es el verdadero sabor de Huánuco." data-en="It is uncovered, served and enjoyed together. That is the true flavor of Huánuco.">Se destapa, se sirve y se disfruta en compañía. Ese es el verdadero sabor de Huánuco.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= MENÚ ================= -->
+    <section class="section section-tint" id="proyectos">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="eyebrow" data-es="Nuestro menú" data-en="Our menu">Nuestro menú</span>
+                <h2><span data-es="Platos que nos" data-en="Dishes that">Platos que nos</span> <em data-es="representan" data-en="represent us">representan</em></h2>
+                <p data-es="Nuestra carta es un recorrido por la cocina huanuqueña: desde la pachamanca ceremonial hasta el chicharrón de cada mañana. Toca una foto para verla en grande y elige tu favorito." data-en="Our menu is a journey through Huánuco cooking: from ceremonial pachamanca to every morning's chicharrón. Tap a photo to see it bigger and pick your favorite.">Nuestra carta es un recorrido por la cocina huanuqueña: desde la pachamanca ceremonial hasta el chicharrón de cada mañana. Toca una foto para verla en grande y elige tu favorito.</p>
+                <div class="ornament"></div>
+            </div>
+            <div class="menu-grid" id="menu">
+                <article class="dish-card reveal">
+                    <div class="dish-media"><span class="dish-tag" data-es="Tradicional" data-en="Traditional">Tradicional</span><img src="img/pachamanca.jpg" alt="Pachamanca" loading="lazy" onclick="abrirVisor(this)" onerror="this.remove()"></div>
+                    <div class="dish-body">
+                        <h3 data-es="Pachamanca" data-en="Pachamanca">Pachamanca</h3>
+                        <p data-es="Carne, papa, habas y humitas cocidas lentamente bajo piedras calientes, con el aroma inconfundible de la tierra huanuqueña." data-en="Meat, potatoes, broad beans and humitas slow-cooked under hot stones, with the unmistakable aroma of Huánuco's earth.">Carne, papa, habas y humitas cocidas lentamente bajo piedras calientes, con el aroma inconfundible de la tierra huanuqueña.</p>
+                        <div class="dish-foot"><span class="price"><span data-es="Precio" data-en="Price">Precio</span><strong>S/ 35.00</strong></span><a href="tel:+51923131882" data-es="Pedir →" data-en="Order →">Pedir →</a></div>
+                    </div>
+                </article>
+                <article class="dish-card reveal">
+                    <div class="dish-media"><span class="dish-tag" data-es="Clásico" data-en="Classic">Clásico</span><img src="img/chicharron-con-mote.jpg" alt="Chicharrón con mote" loading="lazy" onclick="abrirVisor(this)" onerror="this.remove()"></div>
+                    <div class="dish-body">
+                        <h3 data-es="Chicharrón con mote" data-en="Chicharrón with mote">Chicharrón con mote</h3>
+                        <p data-es="Cerdo crocante recién frito con mote, papa sancochada y sarsa criolla. El almuerzo fuerte de los domingos en Huánuco." data-en="Freshly fried crispy pork with mote corn, boiled potato and criollo sauce. The hearty Sunday lunch in Huánuco.">Cerdo crocante recién frito con mote, papa sancochada y sarsa criolla. El almuerzo fuerte de los domingos en Huánuco.</p>
+                        <div class="dish-foot"><span class="price"><span data-es="Precio" data-en="Price">Precio</span><strong>S/ 22.00</strong></span><a href="tel:+51923131882" data-es="Pedir →" data-en="Order →">Pedir →</a></div>
+                    </div>
+                </article>
+                <article class="dish-card reveal">
+                    <div class="dish-media"><span class="dish-tag" data-es="Casero" data-en="Homemade">Casero</span><img src="img/locro-de-gallina.jpg" alt="Locro de gallina" loading="lazy" onclick="abrirVisor(this)" onerror="this.remove()"></div>
+                    <div class="dish-body">
+                        <h3 data-es="Locro de gallina" data-en="Hen locro">Locro de gallina</h3>
+                        <p data-es="Gallina de corral guisada a fuego lento con papa, zanahoria y hierbas de la casa. Calor en una cuchara." data-en="Free-range hen slow-stewed with potato, carrot and our house herbs. Warmth in every spoonful.">Gallina de corral guisada a fuego lento con papa, zanahoria y hierbas de la casa. Calor en una cuchara.</p>
+                        <div class="dish-foot"><span class="price"><span data-es="Precio" data-en="Price">Precio</span><strong>S/ 20.00</strong></span><a href="tel:+51923131882" data-es="Pedir →" data-en="Order →">Pedir →</a></div>
+                    </div>
+                </article>
+                <article class="dish-card reveal">
+                    <div class="dish-media"><span class="dish-tag" data-es="Tradicional" data-en="Traditional">Tradicional</span><img src="img/picante-de-cuy.jpg" alt="Picante de cuy" loading="lazy" onclick="abrirVisor(this)" onerror="this.remove()"></div>
+                    <div class="dish-body">
+                        <h3 data-es="Picante de cuy" data-en="Spicy guinea pig">Picante de cuy</h3>
+                        <p data-es="Cuy guisado en ají colorado con papa y arroz; un clásico de las celebraciones de la sierra huanuqueña." data-en="Guinea pig stewed in red chili with potato and rice; a classic of Huánuco highland celebrations.">Cuy guisado en ají colorado con papa y arroz; un clásico de las celebraciones de la sierra huanuqueña.</p>
+                        <div class="dish-foot"><span class="price"><span data-es="Precio" data-en="Price">Precio</span><strong>S/ 38.00</strong></span><a href="tel:+51923131882" data-es="Pedir →" data-en="Order →">Pedir →</a></div>
+                    </div>
+                </article>
+                <article class="dish-card reveal">
+                    <div class="dish-media"><span class="dish-tag" data-es="Favorito" data-en="Favorite">Favorito</span><img src="img/cuy-chactado.jpg" alt="Cuy chactado" loading="lazy" onclick="abrirVisor(this)" onerror="this.remove()"></div>
+                    <div class="dish-body">
+                        <h3 data-es="Cuy chactado" data-en="Cuy chactado">Cuy chactado</h3>
+                        <p data-es="Cuy frito y prensado hasta quedar dorado, acompañado de papas doradas y ensalada fresca de la casa." data-en="Guinea pig fried and pressed until golden, served with golden potatoes and our fresh house salad.">Cuy frito y prensado hasta quedar dorado, acompañado de papas doradas y ensalada fresca de la casa.</p>
+                        <div class="dish-foot"><span class="price"><span data-es="Precio" data-en="Price">Precio</span><strong>S/ 42.00</strong></span><a href="tel:+51923131882" data-es="Pedir →" data-en="Order →">Pedir →</a></div>
+                    </div>
+                </article>
+                <article class="dish-card reveal">
+                    <div class="dish-media"><span class="dish-tag" data-es="Más" data-en="More">Más</span><img src="img/chicharron.jpg" alt="Chicharrón con papas y ensalada" loading="lazy" onclick="abrirVisor(this)" onerror="this.remove()"></div>
+                    <div class="dish-body">
+                        <h3 data-es="Chicharrón de la casa" data-en="House chicharrón">Chicharrón de la casa</h3>
+                        <p data-es="Cerdo crocante con papas sancochadas, ensalada fresca y sarsa criolla. Una comida completa para compartir en la mesa." data-en="Crispy pork with boiled potatoes, fresh salad and criollo sauce. A full meal to share at the table.">Cerdo crocante con papas sancochadas, ensalada fresca y sarsa criolla. Una comida completa para compartir en la mesa.</p>
+                        <div class="dish-foot"><span class="price"><span data-es="Precio" data-en="Price">Precio</span><strong>S/ 24.00</strong></span><a href="tel:+51923131882" data-es="Pedir →" data-en="Order →">Pedir →</a></div>
+                    </div>
+                </article>
+            </div>
+            <div class="extras reveal">
+                <b data-es="También ofrecemos" data-en="We also offer">También ofrecemos</b>
+                <span data-es="Ceviche huanuqueño" data-en="Huánuco ceviche">Ceviche huanuqueño</span>
+                <span data-es="Lomo saltado" data-en="Lomo saltado">Lomo saltado</span>
+                <span data-es="Pollo a la brasa" data-en="Roast chicken">Pollo a la brasa</span>
+                <span data-es="Humitas y tamales" data-en="Humitas and tamales">Humitas y tamales</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= GALERÍA ================= -->
+    <section class="section" id="galeria">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="eyebrow" data-es="Un vistazo a nuestra mesa" data-en="A look at our table">Un vistazo a nuestra mesa</span>
+                <h2><span data-es="Galería de" data-en="Photo">Galería de</span> <em data-es="sabores" data-en="gallery">sabores</em></h2>
+                <p data-es="Así se ve la comida huanuqueña en nuestra casa. Toca cualquier foto para verla en grande." data-en="This is what Huánuco food looks like in our home. Tap any photo to see it bigger.">Así se ve la comida huanuqueña en nuestra casa. Toca cualquier foto para verla en grande.</p>
+                <div class="ornament"></div>
+            </div>
+            <div class="gallery-grid">
+                <figure class="gallery-item reveal"><img src="img/pachamanca.jpg" alt="Pachamanca" loading="lazy" onclick="abrirVisor(this)"><figcaption data-es="Pachamanca bajo piedras calientes" data-en="Pachamanca under hot stones">Pachamanca bajo piedras calientes</figcaption></figure>
+                <figure class="gallery-item reveal"><img src="img/chicharron.jpg" alt="Chicharrón con papas y ensalada" loading="lazy" onclick="abrirVisor(this)"><figcaption data-es="Chicharrón con papas y ensalada" data-en="Chicharrón with potatoes and salad">Chicharrón con papas y ensalada</figcaption></figure>
+                <figure class="gallery-item reveal"><img src="img/chicharron-con-mote.jpg" alt="Chicharrón con mote" loading="lazy" onclick="abrirVisor(this)"><figcaption data-es="Chicharrón con mote" data-en="Chicharrón with mote corn">Chicharrón con mote</figcaption></figure>
+                <figure class="gallery-item reveal"><img src="img/locro-de-gallina.jpg" alt="Locro de gallina" loading="lazy" onclick="abrirVisor(this)"><figcaption data-es="Locro de gallina" data-en="Hen locro">Locro de gallina</figcaption></figure>
+                <figure class="gallery-item reveal"><img src="img/picante-de-cuy.jpg" alt="Picante de cuy" loading="lazy" onclick="abrirVisor(this)"><figcaption data-es="Picante de cuy" data-en="Spicy guinea pig">Picante de cuy</figcaption></figure>
+                <figure class="gallery-item reveal"><img src="img/cuy-chactado.jpg" alt="Cuy chactado" loading="lazy" onclick="abrirVisor(this)"><figcaption data-es="Cuy chactado" data-en="Cuy chactado">Cuy chactado</figcaption></figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CTA ================= -->
+    <div class="container section">
+        <div class="cta-band reveal">
+            <div>
+                <h2><span data-es="Trae hambre," data-en="Bring your appetite,">Trae hambre,</span> <em data-es="nosotros ponemos el sabor de Huánuco." data-en="we bring the flavor of Huánuco.">nosotros ponemos el sabor de Huánuco.</em></h2>
+                <p data-es="Reserva tu mesa, pide delivery o simplemente ven a conversar. En Sabor Huanuqueño siempre hay un plato esperándote." data-en="Book your table, order delivery or just come by for a chat. At Sabor Huanuqueño there is always a dish waiting for you.">Reserva tu mesa, pide delivery o simplemente ven a conversar. En Sabor Huanuqueño siempre hay un plato esperándote.</p>
+            </div>
+            <a class="btn btn-primary" href="tel:+51923131882" data-es="Reservar ahora" data-en="Book now">Reservar ahora</a>
+        </div>
+    </div>
+
+    <!-- ================= CONTACTO ================= -->
+    <section class="section section-tint" id="contacto">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="eyebrow" data-es="Estamos para ti" data-en="We are here for you">Estamos para ti</span>
+                <h2><span data-es="Vamos a servirte" data-en="Let us serve you">Vamos a servirte</span> <em data-es="lo mejor de Huánuco" data-en="the best of Huánuco">lo mejor de Huánuco</em></h2>
+                <p data-es="Haz tu reserva, pide delivery o escríbenos. Estamos de lunes a domingo para que disfrutes la cocina de nuestra tierra." data-en="Book a table, order delivery or write to us. We are open Monday to Sunday so you can enjoy the cooking of our land.">Haz tu reserva, pide delivery o escríbenos. Estamos de lunes a domingo para que disfrutes la cocina de nuestra tierra.</p>
+                <div class="ornament"></div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card reveal">
+                    <h3><em data-es="Encuéntranos" data-en="Find us">Encuéntranos</em></h3>
+                    <p data-es="Una casa acogedora en el corazón de Huánuco, donde el aroma de la pachamanca te recibe desde la puerta." data-en="A cozy home in the heart of Huánuco, where the aroma of pachamanca welcomes you at the door.">Una casa acogedora en el corazón de Huánuco, donde el aroma de la pachamanca te recibe desde la puerta.</p>
+                    <ul class="contact-rows">
+                        <li><i>📍</i><div><span data-es="Ubicación" data-en="Location">Ubicación</span><p data-es="Huánuco, Perú" data-en="Huánuco, Peru">Huánuco, Perú</p></div></li>
+                        <li><i>📞</i><div><span data-es="Delivery y reservas" data-en="Delivery and reservations">Delivery y reservas</span><a href="tel:+51923131882">923 131 882</a></div></li>
+                        <li><i>🕐</i><div><span data-es="Horario" data-en="Opening hours">Horario</span><p data-es="Lunes a domingo · 11:00 a 21:00" data-en="Monday to Sunday · 11:00 AM to 9:00 PM">Lunes a domingo · 11:00 a 21:00</p></div></li>
+                    </ul>
+                </div>
+                <form class="contact-form reveal" id="contactForm" novalidate>
+                    <h3 data-es="Escríbenos" data-en="Write to us">Escríbenos</h3>
+                    <p data-es="Cuéntanos qué plato se te antoja o para cuántas personas es la reserva." data-en="Tell us which dish you crave or how many people your reservation is for.">Cuéntanos qué plato se te antoja o para cuántas personas es la reserva.</p>
+                    <div class="form-grid">
+                        <input type="text" id="formNombre" name="nombre" required data-ph-es="Tu nombre" data-ph-en="Your name" placeholder="Tu nombre">
+                        <input type="text" id="formPedido" name="pedido" data-ph-es="Tu pedido o reserva" data-ph-en="Your order or reservation" placeholder="Tu pedido o reserva">
+                        <textarea id="formMensaje" name="mensaje" data-ph-es="Tu mensaje" data-ph-en="Your message" placeholder="Tu mensaje"></textarea>
+                        <button class="btn btn-primary" type="submit" data-es="Enviar mensaje" data-en="Send message">Enviar mensaje</button>
+                    </div>
+                    <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-top">
+            <a class="footer-brand" href="#inicio"><span class="brand-mark">SH</span><span class="brand-name">Sabor Huanuqueño<span class="brand-sub" data-es="Cocina de Huánuco" data-en="Huánuco cuisine">Cocina de Huánuco</span></span></a>
+            <div class="footer-links">
+                <a href="#nosotros" data-es="Nosotros" data-en="About us">Nosotros</a>
+                <a href="#cocina" data-es="Nuestra cocina" data-en="Our kitchen">Nuestra cocina</a>
+                <a href="#proyectos" data-es="Menú" data-en="Menu">Menú</a>
+                <a href="#galeria" data-es="Galería" data-en="Gallery">Galería</a>
+                <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Sabor Huanuqueño · <span data-es="Hecho con cariño en Huánuco, Perú" data-en="Made with love in Huánuco, Peru">Hecho con cariño en Huánuco, Perú</span></span>
+            <span>📞 <a href="tel:+51923131882">923 131 882</a></span>
+        </div>
+    </div>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/51923131882?text=Hola%2C%20quiero%20hacer%20una%20reserva%20en%20Sabor%20Huanuque%C3%B1o" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.31 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm0 18.13a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.17 8.17 0 0 1-1.26-4.38c0-4.52 3.68-8.2 8.21-8.2a8.16 8.16 0 0 1 8.2 8.2c0 4.52-3.68 8.23-8.19 8.23Zm4.5-6.14c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.79.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23a7.55 7.55 0 0 1-1.39-1.72c-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.87.85-.87 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.11-.23-.17-.48-.29Z"/></svg>
+</a>
+
+<div id="visor" role="dialog" aria-modal="true" aria-label="Visor de fotos" onclick="cerrarVisor(event)">
+    <button class="cerrar" type="button" aria-label="Cerrar" onclick="cerrarVisor()">&times;</button>
+    <button class="nav-vis prev" type="button" aria-label="Anterior" onclick="cambiarFoto(-1, event)">‹</button>
+    <figure>
+        <img id="visor-img" src="" alt="">
+        <figcaption id="visor-caption"></figcaption>
+    </figure>
+    <button class="nav-vis next" type="button" aria-label="Siguiente" onclick="cambiarFoto(1, event)">›</button>
+</div>
+
+<script>
+(function () {
+    'use strict';
+
+    var header = document.getElementById('siteHeader');
+    var nav = document.getElementById('primaryNav');
+    var toggle = document.getElementById('navToggle');
+    var selector = document.getElementById('idioma');
+    var visor = document.getElementById('visor');
+    var visorImg = document.getElementById('visor-img');
+    var visorCaption = document.getElementById('visor-caption');
+    var photos = Array.prototype.slice.call(document.querySelectorAll('.gallery-item img, .dish-media img[onclick], .hero-collage img'));
+    var fotoActual = 0;
+    var lang = 'es';
+
+    /* ---------- Cabecera y menú móvil ---------- */
+    function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 30); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    toggle.addEventListener('click', function () {
+        var abierto = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(abierto));
+        toggle.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+    });
+    nav.addEventListener('click', function (e) {
+        if (e.target.closest('a')) {
+            nav.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    /* ---------- Idiomas ---------- */
+    function applyLang(next) {
+        lang = (next === 'en') ? 'en' : 'es';
+        document.documentElement.lang = lang;
+        selector.value = lang;
+
+        document.querySelectorAll('[data-es]').forEach(function (el) {
+            var value = el.getAttribute('data-' + lang);
+            if (value !== null) el.textContent = value;
+        });
+        document.querySelectorAll('[data-ph-es]').forEach(function (el) {
+            el.setAttribute('placeholder', el.getAttribute('data-ph-' + lang));
+        });
+
+        var titles = {
+            es: 'Sabor Huanuqueño | Cocina tradicional de Huánuco',
+            en: 'Sabor Huanuqueño | Traditional Huánuco cuisine'
+        };
+        var descriptions = {
+            es: 'Sabor Huanuqueño: cocina tradicional de Huánuco. Pachamanca, chicharrón con mote, locro de gallina y los sabores de nuestra tierra. Delivery y reservas al 923 131 882.',
+            en: 'Sabor Huanuqueño: traditional Huánuco cuisine. Pachamanca, chicharrón with mote, hen locro and the flavors of our land. Delivery and reservations at 923 131 882.'
+        };
+        document.title = titles[lang];
+        document.querySelector('meta[name="description"]').setAttribute('content', descriptions[lang]);
+        document.getElementById('formNote').textContent = '';
+        try { localStorage.setItem('saborHuanuquenoLang', lang); } catch (e) {}
+    }
+
+    selector.addEventListener('change', function () { applyLang(selector.value); });
+    try {
+        var guardado = localStorage.getItem('saborHuanuquenoLang');
+        if (guardado) applyLang(guardado);
+    } catch (e) {}
+
+    /* ---------- Animaciones de entrada ---------- */
+    var revealed = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: .12 });
+        revealed.forEach(function (el) { obs.observe(el); });
+    } else {
+        revealed.forEach(function (el) { el.classList.add('visible'); });
+    }
+
+    /* ---------- Visor de fotos ---------- */
+    function indices() {
+        return photos.map(function (img, i) { return { img: img, i: i }; })
+                     .filter(function (o) { return o.img.src && o.img.offsetParent !== null; });
+    }
+    function abrirVisor(img) {
+        if (!img || !img.src) return;
+        fotoActual = photos.indexOf(img);
+        visorImg.src = img.src;
+        visorImg.alt = img.alt;
+        visorCaption.textContent = img.alt || '';
+        visor.classList.add('activo');
+        document.body.classList.add('no-scroll');
+    }
+    function cerrarVisor(e) {
+        if (e && e.target && e.target.tagName === 'IMG') return;
+        visor.classList.remove('activo');
+        document.body.classList.remove('no-scroll');
+    }
+    function cambiarFoto(paso, e) {
+        if (e) e.stopPropagation();
+        var visibles = indices();
+        if (!visibles.length) return;
+        var pos = visibles.findIndex(function (o) { return o.i === fotoActual; });
+        if (pos < 0) pos = 0;
+        var siguiente = visibles[(pos + paso + visibles.length) % visibles.length];
+        fotoActual = siguiente.i;
+        visorImg.src = siguiente.img.src;
+        visorImg.alt = siguiente.img.alt;
+        visorCaption.textContent = siguiente.img.alt || '';
+    }
+    document.addEventListener('keydown', function (e) {
+        if (!visor.classList.contains('activo')) return;
+        if (e.key === 'Escape') cerrarVisor();
+        if (e.key === 'ArrowLeft') cambiarFoto(-1);
+        if (e.key === 'ArrowRight') cambiarFoto(1);
+    });
+
+    /* ---------- Formulario ---------- */
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var nombre = document.getElementById('formNombre');
+        if (!nombre.value.trim()) { nombre.focus(); return; }
+        var nota = document.getElementById('formNote');
+        nota.textContent = lang === 'en'
+            ? 'Thank you, ' + nombre.value.trim() + '! We will write to you soon.'
+            : '¡Gracias, ' + nombre.value.trim() + '! Te escribiremos pronto.';
+        this.reset();
+    });
+
+    /* Exponer funciones usadas por los atributos onclick del HTML */
+    window.abrirVisor = abrirVisor;
+    window.cerrarVisor = cerrarVisor;
+    window.cambiarFoto = cambiarFoto;
+})();
+</script>
+</body>
+</html>
