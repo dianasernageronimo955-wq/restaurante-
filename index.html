@@ -24,7 +24,7 @@ p{line-height:1.6}
 .card{background:white;padding:25px;border-radius:15px;box-shadow:0 2px 12px rgba(0,0,0,.1)}
 .card h3{color:#e67e22;margin-bottom:8px}
 .galeria{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:20px}
-.galeria img{width:100%;height:200px;object-fit:cover;border-radius:15px}
+.galeria img{width:100%;height:200px;object-fit:cover;border-radius:15px;cursor:zoom-in}
 .menu-platos{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px;text-align:left}
 .plato{background:white;padding:20px;border-radius:15px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
 .plato b{color:#e67e22}
@@ -32,8 +32,24 @@ form{max-width:500px;margin:20px auto;display:flex;flex-direction:column;gap:12p
 input,textarea{padding:12px;border-radius:10px;border:1px solid #ddd;width:100%}
 button{background:#e67e22;color:white;border:none;padding:13px;border-radius:25px;font-weight:bold;cursor:pointer;font-size:16px}
 .contacto-box{background:#2c1e0f;color:white;border-radius:20px;padding:30px;margin-top:20px}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:25px}
+.plato-card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.12);text-align:left;transition:transform .2s,box-shadow .2s}
+.plato-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.plato-foto{position:relative;width:100%;height:210px;background:linear-gradient(135deg,#f6b26b,#e67e22);display:flex;align-items:center;justify-content:center;font-size:52px;color:#fff;overflow:hidden}
+.plato-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in}
+.plato-info{padding:16px 18px 18px}
+.plato-info h3{color:#b45309;font-size:19px;margin-bottom:6px}
+.plato-info p{font-size:14px;color:#6b6259;line-height:1.45}
+.precio{margin-top:10px;font-weight:bold;color:#e67e22;font-size:18px}
+.otros{margin-top:26px;font-size:15px;color:#7a6a58}
+.otros b{color:#b45309}
+#visor{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+#visor.activo{display:flex}
+#visor img{max-width:100%;max-height:100%;border-radius:12px}
+#visor span{position:absolute;top:18px;right:26px;color:#fff;font-size:34px;cursor:pointer}
 footer{text-align:center;padding:20px;color:#888;background:#fff}
-@media(max-width:700px){.cards,.galeria,.menu-platos{grid-template-columns:1fr}.hero h2{font-size:32px}}
+@media(max-width:900px){.menu-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.cards,.galeria,.menu-platos,.menu-grid{grid-template-columns:1fr}.hero h2{font-size:32px}.plato-foto{height:230px}}
 </style>
 </head>
 <body>
@@ -44,7 +60,7 @@ footer{text-align:center;padding:20px;color:#888;background:#fff}
     <a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a>
     <a href="#nosotros" data-es="Nosotros" data-en="About Us">Nosotros</a>
     <a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
-    <a href="#proyectos" data-es="Proyectos" data-en="Projects">Proyectos</a>
+    <a href="#proyectos" data-es="Menú" data-en="Menu">Menú</a>
     <a href="#galeria" data-es="Galería" data-en="Gallery">Galería</a>
     <a href="#contacto" data-es="Contáctanos" data-en="Contact Us">Contáctanos</a>
     <select id="idioma" onchange="cambiarIdioma()">
@@ -75,24 +91,68 @@ footer{text-align:center;padding:20px;color:#888;background:#fff}
 </section>
 
 <section id="proyectos">
-  <h2 data-es="Proyectos / Nuestro Menú" data-en="Projects / Our Menu">Proyectos / Nuestro Menú</h2>
-  <div class="menu-platos" id="menu">
-    <div class="plato"><b>Ceviche Huanuqueño</b><p data-es="Pescado fresco, limón y cebolla" data-en="Fresh fish, lemon and onion">Pescado fresco, limón y cebolla</p><p><b>S/ 25.00</b></p></div>
-    <div class="plato"><b>Lomo Saltado</b><p data-es="Carne, papas fritas y arroz" data-en="Beef, french fries and rice">Carne, papas fritas y arroz</p><p><b>S/ 28.00</b></p></div>
-    <div class="plato"><b>Pachamanca</b><p data-es="Carne, papa y humitas al estilo tradicional" data-en="Meat, potato and humitas in traditional style">Carne, papa y humitas al estilo tradicional</p><p><b>S/ 35.00</b></p></div>
-    <div class="plato"><b>Pollo a la Brasa</b><p data-es="Con papas y ensalada" data-en="With potatoes and salad">Con papas y ensalada</p><p><b>S/ 32.00</b></p></div>
+  <h2 data-es="Nuestro Menú" data-en="Our Menu">Nuestro Menú</h2>
+  <p data-es="Los platos típicos que nos hacen famosos en Huánuco. Toca una foto para verla en grande." data-en="The typical dishes that make us famous in Huánuco. Tap a photo to see it bigger.">Los platos típicos que nos hacen famosos en Huánuco. Toca una foto para verla en grande.</p>
+  <div class="menu-grid" id="menu">
+
+    <div class="plato-card">
+      <div class="plato-foto">🍲<img src="img/pachamanca.jpg" alt="Pachamanca" loading="lazy" onclick="abrirVisor(this)" onerror="this.remove()"></div>
+      <div class="plato-info">
+        <h3>Pachamanca</h3>
+        <p data-es="Carne, papa, habas y humitas cocidas bajo piedras calientes." data-en="Meat, potato, broad beans and humitas cooked under hot stones.">Carne, papa, habas y humitas cocidas bajo piedras calientes.</p>
+        <p class="precio">S/ 35.00</p>
+      </div>
+    </div>
+
+    <div class="plato-card">
+      <div class="plato-foto">🥓<img src="img/chicharron-con-mote.jpg" alt="Chicharrón" loading="lazy" onclick="abrirVisor(this)" onerror="this.remove()"></div>
+      <div class="plato-info">
+        <h3>Chicharrón</h3>
+        <p data-es="Cerdo crocante con mote, papa sancochada y sarsa criolla." data-en="Crispy pork with mote, boiled potato and criolla sauce.">Cerdo crocante con mote, papa sancochada y sarsa criolla.</p>
+        <p class="precio">S/ 22.00</p>
+      </div>
+    </div>
+
+    <div class="plato-card">
+      <div class="plato-foto">🍜<img src="img/locro-de-gallina.jpg" alt="Locro de Gallina" loading="lazy" onclick="abrirVisor(this)" onerror="this.remove()"></div>
+      <div class="plato-info">
+        <h3>Locro de Gallina</h3>
+        <p data-es="Guiso de gallina con papa, arroz y hierbas de la casa." data-en="Hen stew with potato, rice and our house herbs.">Guiso de gallina con papa, arroz y hierbas de la casa.</p>
+        <p class="precio">S/ 20.00</p>
+      </div>
+    </div>
+
+    <div class="plato-card">
+      <div class="plato-foto">🌶️<img src="img/picante-de-cuy.jpg" alt="Picante de Cuy" loading="lazy" onclick="abrirVisor(this)" onerror="this.remove()"></div>
+      <div class="plato-info">
+        <h3>Picante de Cuy</h3>
+        <p data-es="Cuy guisado en ají colorado, con papa y arroz." data-en="Guinea pig stewed in red chili, with potato and rice.">Cuy guisado en ají colorado, con papa y arroz.</p>
+        <p class="precio">S/ 38.00</p>
+      </div>
+    </div>
+
+    <div class="plato-card">
+      <div class="plato-foto">🍗<img src="img/cuy-chactado.jpg" alt="Cuy Chactado" loading="lazy" onclick="abrirVisor(this)" onerror="this.remove()"></div>
+      <div class="plato-info">
+        <h3>Cuy Chactado</h3>
+        <p data-es="Cuy frito y prensado, acompañado de papas doradas y ensalada." data-en="Fried and pressed guinea pig, with golden potatoes and salad.">Cuy frito y prensado, acompañado de papas doradas y ensalada.</p>
+        <p class="precio">S/ 42.00</p>
+      </div>
+    </div>
+
   </div>
+  <p class="otros" data-es="También ofrecemos: Ceviche Huanuqueño, Lomo Saltado y Pollo a la Brasa." data-en="We also offer: Huanuqueño Ceviche, Lomo Saltado and Roast Chicken.">También ofrecemos: Ceviche Huanuqueño, Lomo Saltado y Pollo a la Brasa.</p>
 </section>
 
 <section id="galeria">
   <h2 data-es="Galería de Fotos" data-en="Photo Gallery">Galería de Fotos</h2>
   <div class="galeria">
-    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600" alt="Restaurante">
-    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600" alt="Comida">
-    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600" alt="Plato">
-    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600" alt="Mesa">
-    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c4299bd?w=600" alt="Ensalada">
-    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600" alt="Pizza">
+    <img src="img/pachamanca.jpg" alt="Pachamanca" loading="lazy" onclick="abrirVisor(this)">
+    <img src="img/chicharron.jpg" alt="Chicharrón con papas y ensalada" loading="lazy" onclick="abrirVisor(this)">
+    <img src="img/chicharron-con-mote.jpg" alt="Chicharrón con mote" loading="lazy" onclick="abrirVisor(this)">
+    <img src="img/locro-de-gallina.jpg" alt="Locro de gallina" loading="lazy" onclick="abrirVisor(this)">
+    <img src="img/locro-con-mote.jpg" alt="Locro con mote" loading="lazy" onclick="abrirVisor(this)">
+    <img src="img/plato-de-la-casa.jpg" alt="Plato de la casa" loading="lazy" onclick="abrirVisor(this)">
   </div>
 </section>
 
@@ -113,7 +173,20 @@ footer{text-align:center;padding:20px;color:#888;background:#fff}
 
 <footer>© 2026 Sabor Huanuqueño - Huánuco</footer>
 
+<div id="visor" onclick="cerrarVisor()">
+  <span>&times;</span>
+  <img id="visor-img" alt="Plato">
+</div>
+
 <script>
+function abrirVisor(img){
+  document.getElementById('visor-img').src = img.src;
+  document.getElementById('visor').classList.add('activo');
+}
+function cerrarVisor(){
+  document.getElementById('visor').classList.remove('activo');
+}
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') cerrarVisor(); });
 function cambiarIdioma(){
   var lang = document.getElementById('idioma').value;
   document.querySelectorAll('[data-es]').forEach(function(el){
