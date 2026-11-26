@@ -17,6 +17,7 @@ select{padding:6px;border-radius:20px;border:none;font-weight:bold;cursor:pointe
 .hero h2{font-size:42px;margin-bottom:10px}
 .hero p{font-size:18px;max-width:600px;margin:auto}
 .btn{display:inline-block;margin-top:20px;background:#e67e22;color:white;padding:12px 28px;border-radius:25px;text-decoration:none;font-weight:bold}
+.hero-tel{display:inline-block;margin-top:18px;background:#f9a826;color:#2c1e0f;padding:11px 24px;border-radius:25px;text-decoration:none;font-weight:bold;font-size:19px;letter-spacing:.4px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
 section{padding:50px 20px;max-width:1000px;margin:auto;text-align:center}
 h2{color:#b45309;font-size:30px;margin-bottom:15px}
 p{line-height:1.6}
@@ -73,7 +74,8 @@ footer{text-align:center;padding:20px;color:#888;background:#fff}
 <div class="hero" id="inicio">
   <h2 data-es="El verdadero sabor de Huánuco" data-en="The true flavor of Huánuco">El verdadero sabor de Huánuco</h2>
   <p data-es="Comida casera, platos típicos y mucha tradición. ¡Bienvenidos a nuestra casa!" data-en="Homemade food, typical dishes and a lot of tradition. Welcome to our home!">Comida casera, platos típicos y mucha tradición. ¡Bienvenidos a nuestra casa!</p>
-  <a class="btn" href="#menu" data-es="Ver Menú" data-en="See Menu">Ver Menú</a>
+  <a class="hero-tel" href="tel:+51923131882" data-es="📞 Delivery y reservas: 923 131 882" data-en="📞 Delivery &amp; reservations: 923 131 882">📞 Delivery y reservas: 923 131 882</a>
+  <div><a class="btn" href="#menu" data-es="Ver Menú" data-en="See Menu">Ver Menú</a></div>
 </div>
 
 <section id="nosotros">
@@ -160,7 +162,7 @@ footer{text-align:center;padding:20px;color:#888;background:#fff}
   <h2 data-es="Contáctanos" data-en="Contact Us">Contáctanos</h2>
   <div class="contacto-box">
     <p>📍 <span data-es="Huánuco, Perú" data-en="Huánuco, Peru">Huánuco, Perú</span></p>
-    <p>📞 555-0100</p>
+    <p>📞 <a href="tel:+51923131882" style="color:#f9a826;text-decoration:none;font-weight:bold">923 131 882</a></p>
     <p>🕐 <span data-es="Lunes a Domingo: 11am - 9pm" data-en="Monday to Sunday: 11am - 9pm">Lunes a Domingo: 11am - 9pm</span></p>
   </div>
   <form onsubmit="alert('¡Gracias! Te escribiremos pronto');return false;">
@@ -171,7 +173,7 @@ footer{text-align:center;padding:20px;color:#888;background:#fff}
   </form>
 </section>
 
-<footer>© 2026 Sabor Huanuqueño - Huánuco</footer>
+<footer>© 2026 Sabor Huanuqueño - Huánuco · 📞 923 131 882</footer>
 
 <div id="visor" onclick="cerrarVisor()">
   <span>&times;</span>
